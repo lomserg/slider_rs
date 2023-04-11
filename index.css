@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0 auto;
+    border: red dotted 1px;
+    width: 1200px;
+}
+
+.container {
+    display: flex;
+}
+
+.slider-container {
+    width: 640px;
+    border: 1px purple dotted;
+    margin: 0 auto;
+    
+    overflow: hidden;
+}
+
+.slider {
+    position: relative;
+    left: -640px;
+    display: flex;
+    gap: 10px;
+}
+
+.group {
+    display: flex;
+    background-color: darkblue;
+    gap: 15px;
+}
+
+.item {
+    width: 200px;
+    height: 200px;
+    background-color: aqua;
+}
+
+
+
+@keyframes move-right {
+    from {left: -640px;}
+    to {left: -1280px;}
+  }
+
+  .transition-right {
+    animation-name: move-right;
+    animation-duration: 1s;
+  }
+
+  @keyframes move-left {
+    from {left: -640px;}
+    to {left: -0px;}
+  }
+
+  .transition-left {
+    animation-name: move-left;
+    animation-duration: 1s;
+  }
