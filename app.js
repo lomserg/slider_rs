@@ -169,12 +169,9 @@ window.addEventListener('DOMContentLoaded', () => {
     generateLeft()
 	init()
 });
-console.log(newarrL)
+
 function init() {
     while (i < items) {
-        console.log(newarr[i], 'current')
-        console.log(newarrR[i], 'right')
-        console.log(newarrL[i], 'left')
             let item = document.createElement('div')
             item.classList.add('item')
             item.innerHTML = `<p>${newarr[i]}<p>`
@@ -194,7 +191,25 @@ function init() {
          }
 }
     
+function generateNewItemsL() {
+for(let i = 0; i < items;i++) {
+	let itemL = document.createElement('div')
+	itemL.classList.add('item')
+	itemL.innerHTML = `<p>${newarrL[i]}<p>`
+	groups[0].appendChild(itemL)
+}
 
+}
+
+function generateNewItemsR() {
+	for(let i = 0; i < items;i++) {
+		let itemR = document.createElement('div')
+		itemR.classList.add('item')
+		itemR.innerHTML = `<p>${newarrR[i]}<p>`
+		groups[2].appendChild(itemR)
+	}
+	
+	}
 
 // console.log(newarr, 'current')
 // console.log(newarrR, 'right')
@@ -252,14 +267,36 @@ slider.addEventListener('animationend', (annimationEvent) => {
 				}
 			}
 			}
-		
+			groups[0].innerHTML = ''
+			generateNewItemsL()
 		
     } else {
     
         slider.classList.remove('transition-right')
-        changedItem = groupR;
-        groupR.innerHTML = groupC.innerHTML;
-        groupC.innerHTML = groupL.innerHTML;
+        
+        groupL.innerHTML = groupC.innerHTML;
+        groupC.innerHTML = groupR.innerHTML;
+
+		let newC = groupC.childNodes
+		newarr = []
+		newC.forEach(div => {
+			newarr.push(div.firstChild.textContent)
+			console.log(newarr)
+		})
+
+		newarrR = []
+		for(let i = 0, tempData = [...data], len = tempData.length; i < len; i++) {
+			while(newarrR.length < 3) {
+				let rand = Math.floor(Math.random() * tempData.length)
+				if(!newarr.includes(tempData[rand].title)){
+					newarrR.push(tempData[rand].title)
+					tempData.splice(rand,1)
+					console.log(newarrR)
+				}
+			}
+			}
+			groups[2].innerHTML = ''
+			generateNewItemsR()
     }
     // changedItem.innerHTML = ''
 	console.log(newarr)
